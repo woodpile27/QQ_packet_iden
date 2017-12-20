@@ -100,13 +100,11 @@ def Mobile_qq(pkt, from_server):
     raw_dump = dump(pkt[Raw])
     # raw_dump[7] in ['0x0a', '0x0b', 0x0d']
     if raw_dump[4] == raw_dump[5] == raw_dump[6] == '0x00' and raw_dump[8] in ['0x01', '0x02']:
-        #if pkt.sport == 14000:
         if from_server:
             start = 14
             num_len = int(raw_dump[start-1], 16) - 4
             end = start + num_len
             qq_num = ''.join([chr(int(i, 16)) for i in raw_dump[start:end]])
-        #elif pkt.dport == 14000:
         else:
             start = 18
             num_len = int(raw_dump[start-1], 16) - 4
