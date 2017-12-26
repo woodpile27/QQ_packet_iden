@@ -116,8 +116,10 @@ def Mobile_qq(pkt, from_server):
             return qq_num
         except Exception:
             return None
+    else:
+        return None
 
-
+    
 def save_to_mongo(data):
     try:
         if mongodb['qq_iden'].update({'mac': data['mac']},{'$addToSet': {'qq_num': data['QQ_num']}}, upsert=True):
